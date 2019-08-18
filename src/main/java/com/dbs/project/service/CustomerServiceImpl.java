@@ -13,12 +13,16 @@ import org.springframework.stereotype.Service;
 import com.dbs.project.model.Customer;
 import com.dbs.project.model.Transaction;
 import com.dbs.project.repository.CustomerRepository;
+import com.dbs.project.repository.TransactionRepository;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	public CustomerRepository customerRepository;
+	@Autowired
+	public TransactionRepository transactionRepository;
+	
 	
 
 
@@ -84,14 +88,14 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Customer findByPassword(String password) {
-		// TODO Auto-generated method stub
+	
 		return this.customerRepository.findByPassword(password).get();
 
 	}
 
 	@Override
 	public void saveTransaction(Transaction transaction) {
-		 this.customerRepository.save(transaction);
+		 this.transactionRepository.save(transaction);
 	}
 
 	

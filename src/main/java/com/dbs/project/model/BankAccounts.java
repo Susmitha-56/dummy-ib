@@ -53,8 +53,8 @@ public class BankAccounts implements Serializable{
 	  private Customer customer;
 	
 	
-	 @OneToMany(mappedBy = "account", fetch = FetchType.LAZY) private
-	  Set<Transaction> transaction=new HashSet<>();
+	// @OneToMany(mappedBy = "account", fetch = FetchType.LAZY) private
+	//  Set<Transaction> transaction=new HashSet<>();
 	 
 	
 	public Customer getCustomer() {

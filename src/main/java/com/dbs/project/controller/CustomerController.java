@@ -58,6 +58,12 @@ public class CustomerController {
 		      return s;
 		}
 	
+	@GetMapping("/customers/{id}/accounts")
+    public Set<BankAccounts> getCustomerAccount(@PathVariable long id){
+		
+		return this.customerService.findById(id).getBankAccountsSet();
+		
+    }
 	
 	@PutMapping("/cus-fetch-id/{id}")
 	public Customer updateCustomer(@PathVariable("id") Long id,
@@ -70,30 +76,10 @@ public class CustomerController {
 		 customerService.deleteById(id);
 	}
 	
-	@GetMapping("/customers/{id}/accounts")
-    public Set<BankAccounts> getCustomerAccount(@PathVariable long id){
-		
-		return this.customerService.findById(id).getBankAccountsSet();
-		
-    }
 	@PostMapping("/transactions/{id}")
 	public void fundTransfer(@PathVariable("id") Long id,Transaction transaction)
 	{
 		this.customerService.saveTransaction(transaction);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
