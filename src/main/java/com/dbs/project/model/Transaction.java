@@ -1,12 +1,16 @@
 package com.dbs.project.model;
 
 import java.sql.Timestamp;
+
 import java.util.Date;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Data
@@ -19,7 +23,8 @@ public class Transaction {
 	private long toAccountNo;
 	private long amount;
 	private String ifsc;
-	private String type;
+	private String date=LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+	
 	
 	public Transaction() {
 
@@ -30,13 +35,13 @@ public class Transaction {
 	@ManyToOne(fetch = FetchType.LAZY,optional = false)
 	  private BankAccounts bankaccounts;*/
 	
-public Transaction(long fromAccountNo, long toAccountNo, long amount, String ifsc, String type) {
+public Transaction(long fromAccountNo, long toAccountNo, long amount, String ifsc) {
 	super();
 	this.fromAccountNo = fromAccountNo;
 	this.toAccountNo = toAccountNo;
 	this.amount = amount;
 	this.ifsc = ifsc;
-	this.type = type;
+		
 }
 	
 

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.dbs.project.model.BankAccounts;
 import com.dbs.project.model.Customer;
 import com.dbs.project.model.Transaction;
+import com.dbs.project.service.BankAccountsService;
 import com.dbs.project.service.CustomerService;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -30,8 +31,8 @@ public class CustomerController {
 	
 	@Autowired
 	CustomerService customerService;
-	
-	
+	@Autowired
+	BankAccountsService bankaccountsservice;
 	
 	@GetMapping("/cus-details")
 	public List<Customer> listAllCustomers(){
@@ -79,13 +80,25 @@ public class CustomerController {
 		 customerService.deleteById(id);
 	}
 	
-	@PostMapping("/transactions/{id}")
-	public Transaction fundTransfer(@PathVariable("id") Long id,@RequestBody Transaction transaction)
+	@PostMapping("/transactions")
+	public Transaction fundTransfer(@RequestBody Transaction transaction)
 	{
-		Customer c1=customerService.findById(id);
-		System.out.println("hgg" + transaction.getFromAccountNo());
-		return this.customerService.saveTransaction(transaction);
-		
-	}
+
 	
+		
+		long fromacc=transaction.getFromAccountNo();
+		long toacc=transaction.getToAccountNo();
+		BankAccounts ba1=bankaccountsservice.findByAcNumber(fromacc);
+		BankAccounts ba2=bankaccountsservice.findByAcNumber(toacc);
+		double enteredAmount=transaction.getAmount();
+		double amount1=ba1.getBalance()-enteredAmount;
+		double amount2=ba2.getBalance()+enteredAmount;
+		ba1.setBalance(amount1);
+		ba2.setBalance(amount2);
+		System.out.println(ba1.getBalance());
+		return this.customerService.saveTransaction(transaction);
+	}
+
+
+ 
 }

@@ -57,4 +57,10 @@ public class BankAccountsServiceImpl implements BankAccountsService{
 		
 	}
 
+	@Override
+	@Transactional
+	public BankAccounts findByAcNumber(long acnumber) {
+		return this.accountRepository.findByAcnumber(acnumber);
+	}
+
 }

@@ -8,6 +8,6 @@ import com.dbs.project.model.BankAccounts;
 
 public interface AccountsRepository extends JpaRepository<BankAccounts, Long> {
 
-	
+	BankAccounts findByAcnumber(long acnumber);
 
 }

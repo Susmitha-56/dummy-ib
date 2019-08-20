@@ -64,6 +64,7 @@ public class BankAccounts implements Serializable{
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
