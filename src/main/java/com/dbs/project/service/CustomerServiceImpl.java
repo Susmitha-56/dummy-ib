@@ -81,12 +81,14 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
+	@Transactional
 	public Customer findByUsername(String username) {
 		
 		return this.customerRepository.findByUserName(username).get();
 	}
 
 	@Override
+	@Transactional
 	public Customer findByPassword(String password) {
 	
 		return this.customerRepository.findByPassword(password).get();
@@ -94,10 +96,12 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public void saveTransaction(Transaction transaction) {
-		 this.transactionRepository.save(transaction);
+	@Transactional
+	public Transaction saveTransaction(Transaction transaction) {
+		 return this.transactionRepository.save(transaction);
 	}
 
+	
 	
 
 }

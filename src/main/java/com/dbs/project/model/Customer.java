@@ -42,6 +42,7 @@ public class Customer implements Serializable, Comparable<Customer> {
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<BankAccounts> bankAccountsSet = new HashSet<>();
 
+	
 	/*@ManyToOne
 	@JoinColumn(name = "empid", nullable = false)
 	private Bank bank;*/

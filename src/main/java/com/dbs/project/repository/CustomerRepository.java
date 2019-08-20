@@ -15,11 +15,13 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
     List<Customer> findAll();
 
-    Optional<Customer> findByUserName(String name);
-
+    
     Optional<Customer> findByPassword(String password);
 
 	void save(Transaction transaction);
+
+
+	Optional<Customer> findByUserName(String username);
 
 }
 

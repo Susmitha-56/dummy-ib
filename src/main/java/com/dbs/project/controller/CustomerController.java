@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.validation.Valid;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.ui.Model;
@@ -21,6 +22,7 @@ import com.dbs.project.model.Transaction;
 import com.dbs.project.service.CustomerService;
 import org.springframework.web.bind.annotation.RequestParam;
 
+@CrossOrigin
 @RestController
 
 @RequestMapping("/xyz")
@@ -28,6 +30,7 @@ public class CustomerController {
 	
 	@Autowired
 	CustomerService customerService;
+	
 	
 	
 	@GetMapping("/cus-details")
@@ -77,9 +80,12 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/transactions/{id}")
-	public void fundTransfer(@PathVariable("id") Long id,Transaction transaction)
+	public Transaction fundTransfer(@PathVariable("id") Long id,@RequestBody Transaction transaction)
 	{
-		this.customerService.saveTransaction(transaction);
+		Customer c1=customerService.findById(id);
+		System.out.println("hgg" + transaction.getFromAccountNo());
+		return this.customerService.saveTransaction(transaction);
+		
 	}
 	
 }

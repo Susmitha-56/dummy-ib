@@ -15,8 +15,9 @@ public interface CustomerService {
 	Customer findByPassword(String password);
 	Customer save(Customer customer);
 	void deleteById(long id);
+	
   
 	Customer update(long id, Customer customer);
-	void saveTransaction(Transaction transaction);
+	Transaction saveTransaction(Transaction transaction);
 		
 }
